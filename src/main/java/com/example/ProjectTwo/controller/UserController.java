@@ -1,7 +1,9 @@
 package com.example.ProjectTwo.controller;
 
+import com.example.ProjectTwo.Specification.SpecificationEntity;
 import com.example.ProjectTwo.dto.UserDto;
 import com.example.ProjectTwo.entity.UserEntity;
+import com.example.ProjectTwo.entity.UserEntity_;
 import com.example.ProjectTwo.mapper.UserMapper;
 import com.example.ProjectTwo.repository.UserRepository;
 import org.springframework.http.HttpStatus;
@@ -36,6 +38,10 @@ private UserMapper userMapper;
         return new ResponseEntity<>(
                 userMapper.userEntitysToUserDtos(userRepository.findAll()),
                 HttpStatus.OK);
+    }
+    @GetMapping("/filter/")
+    public List<UserEntity> getPostAge(@RequestBody UserDto userDto) {
+        return  userRepository.findAll(SpecificationEntity.isLessValue(UserEntity_.age, userDto.getAge()));
     }
 
 }
