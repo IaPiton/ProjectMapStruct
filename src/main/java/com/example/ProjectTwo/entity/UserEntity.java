@@ -14,7 +14,7 @@ public class UserEntity {
     private Long id;
     @Column(name = "name")
     private String name;
-    @Column(name = "last_name")
+    @Column(name = "lastname")
     private String lastName;
     @Column(name = "age")
     private Integer age;
